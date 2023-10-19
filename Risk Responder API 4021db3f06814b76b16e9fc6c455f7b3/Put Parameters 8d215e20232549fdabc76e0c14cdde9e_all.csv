@@ -1,0 +1,2 @@
+﻿parameter,Type,Is required,description
+owned_domains,Array of domains,No,owned_domains will eliminate the risk from these domains and it'll have a direct impact on the customer/brand total score and the actual returned results

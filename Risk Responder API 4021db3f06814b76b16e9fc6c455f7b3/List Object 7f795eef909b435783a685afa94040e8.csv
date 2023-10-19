@@ -1,0 +1,12 @@
+﻿parameter,Type,description
+uuid,UUID,"Use this UUID to get more information about a particular result, you should store for later usage as a reference."
+customer,String Identifier,The customer identifier used in creating this result.
+dryrun,Boolean,Lets the user know if this was a test request.
+status,Array of strings,"It adds transparency on where the report is at any particular point. Expect one of the following values: 
+""Queued""
+""In progress""
+""Processing done""
+""Processing Error"" 
+""Webhook done""
+""Webhook failed"""
+created_on,Datetime,

@@ -1,7 +1,5 @@
 # Risk Responder API
 
-# Risk Responder API
-
 This document will describe the specifications of the Risk Responder API
 
 ### Authentication

@@ -29,7 +29,16 @@ Risk Responder analyzes data points about each brand and tries to come up with a
 
 **POST** `/create/`
 
-[Post Parameters](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/Post%20Parameters%20adb8b508e44148fe8f5880786d3128f7.csv)
+|parameter    | Type              |Is required| description                                                                                                                              |
+|-------------|-------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------|
+|domains      | Array of Strings  |Yes        | Analyzer depends on this as a starting point for its process.                                                                            |
+|callback_url | Valid URL         |Yes        | A webhook to be called back once the results are ready via a POST request.                                                               |
+|keywords     | Array of Strings  |No         |                                                                                                                                          |
+|phrases      | Array of Strings  |No         |                                                                                                                                          |
+|owned_domains| Array of Strings  |No         | Owned_domains will eliminate the risk from these domains and it'll have a direct impact on the results’ total score and returned values. |
+|customer     | String Identifier |No         | Any string. It will be used as an identifier for the customer.                                                                           |
+|dryrun       | Boolean           |No         | Generate random testing results, false by default.                                                                                       |
+
 
 **Example request**
 
@@ -97,8 +106,15 @@ curl -X GET \
     ]
 }
 ```
+**List Object**
 
-[List Object](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/List%20Object%207f795eef909b435783a685afa94040e8.csv)
+|parameter    | Type              | description                                                                                                                                             |
+|-------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+|uuid         | UUID              | Unique identifier of a result, store for later usage.                                                                                                   |
+|customer     | String Identifier | Unique identifier for the user.                                                                                                                         |
+|dryrun       | Boolean           | If test request.                                                                                                                                        |
+|status       | Array of Strings  | Status of the report. Expect one of the following values:  "Queued" "In progress" "Processing done" "Processing Error"  "Webhook done" "Webhook failed" |
+|created_on   | Datetime          | Date of creation.                                                                                                                                       |
 
 ## Details API
 
@@ -118,11 +134,41 @@ curl -X GET \
 
 </aside>
 
-[Threats](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/Threats%20170f47ed54f34656ae87fd36fe4d6180.csv)
+**Result Threats** 
 
-[Result grades](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/Result%20grades%20604d90c9bcee4d66b0250e4bd6a617e5.csv)
+| Name              |
+|-------------------|
+| Malware           |
+| Phishing          |
+| Risky Registrant  |
+| Suspicious Domain |
+| MX record         |
 
-[Total grade](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/Total%20grade%20838f7aeb02464e1ab733a13f5fcf3702.csv)
+
+**Result Grades**
+
+|Grade     |
+|----------|
+|High      |
+|Medium    |
+|Low       |
+
+**Total Result Grades**
+
+|Grade     |
+|----------|
+|A+        |
+|A         |
+|A-        |
+|B+        |
+|B         |
+|B-        |
+|C+        |
+|C         |
+|C-        |
+|D+        |
+|D         |
+
 
 **Example response**
 
@@ -200,7 +246,9 @@ curl -X GET \
 
 **PUT** `/update-owned-domains/<uuid>/`
 
-[Put Parameters](Risk%20Responder%20API%204021db3f06814b76b16e9fc6c455f7b3/Put%20Parameters%208d215e20232549fdabc76e0c14cdde9e.csv)
+|parameter | Type             |Is required| description                                                                                                                    |
+|----------|------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------|
+|owned_domains| Array of Strings |No         | owned_domains will eliminate the risk from these domains and it'll have a direct impact on the brand's total score and results |
 
 **Example request**
 
@@ -274,7 +322,7 @@ curl -X PUT \
 ## Limitations
 
 <aside>
-⚠️ You are limited to run one **[Create API](https://www.notion.so/Digital-Identity-Evaluation-API-Documentation-aca2f774eda4464d898944a838d8ad9a?pvs=21)** request per **month** per **customer.** To get monthly updates, you must call **[Create API](https://www.notion.so/Digital-Identity-Evaluation-API-Documentation-aca2f774eda4464d898944a838d8ad9a?pvs=21) on monthly basis**
+⚠️ You are limited to run one Create API request per **month** per **customer.** To get monthly updates, you must call Create API on a monthly basis**
 
 </aside>
 
@@ -282,7 +330,8 @@ curl -X PUT \
 
 Evaluation process takes time, and it was designed to work with Webhooks (it will call back your API with updates)
 
-**POST** `callback_url` 
+**POST**
+
 `callback_url`Will be called once the evaluation process is **done**
 
 **Example payload**
@@ -340,4 +389,4 @@ Evaluation process takes time, and it was designed to work with Webhooks (it wil
 
 **Limitations**
 
-- Webhook will timeout in 30 seconds. Make sure you process the results in a background service if needed
+- Webhook will timeout in 30 seconds.

@@ -26,7 +26,7 @@ Act Request allows users to submit a takedown request through our system with a 
 
 | Parameter | Type | Is Required | Description |
 | --- | --- | --- | --- |
-| domain | String (Valid Domain) | Yes | Domain to take action against. |
+| domain | String (Valid Domain) | Yes | Domain to take action against|
 | threat_type | Integer | Yes | Degree of threat |
 | threat_reason | Integer | Yes | Reason of report |
 

@@ -5,5 +5,6 @@ The Domainskate Team offers easy-to-use APIs to utilize and integrate our availa
 ## Available APIs
 
 - ### [Risk Responder API](https://github.com/DomainSkate/Domainskate-APIs/tree/main/Risk%20Responder%20API)
+Risk Responder APIs enable users to identify potential threats and assess their severity for the domains they own.
 - ### [Act Request API](https://github.com/DomainSkate/Domainskate-APIs/tree/main/Act%20Request%20API)
-
+Act Request APIs allow users to take action against any domain they find suspicious.   

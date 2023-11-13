@@ -27,19 +27,23 @@ Risk Responder analyzes data points about each brand and tries to come up with a
 
 **POST** `/create/`
 
-|parameter    | Type                                |Is required| description                                                                                                                              |
-|-------------|-------------------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------|
-|domains      | Valid Domains (Separated by Commas) |Yes        | Analyzer depends on this as a starting point for its process.                                                                            |
-|callback_url | Valid URL                           |Yes        | A webhook to be called back once the results are ready via a POST request.                                                               |
-|keywords     | Array of Strings                    |No         |                                                                                                                                          |
-|phrases      | Array of Strings                    |No         |                                                                                                                                          |
-|owned_domains| Valid Domains (Separated by Commas) |No         | Owned_domains will eliminate the risk from these domains and it'll have a direct impact on the results’ total score and returned values. |
-|customer     | String Identifier                   |No         | Any string. It will be used as an identifier for the customer.                                                                           |
-|dryrun       | Boolean                             |No         | Generate random testing results, false by default.                                                                                       |
+|parameter    | Type                                | Is required | description                                                                                                                              |
+|-------------|-------------------------------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------|
+|domains      | Valid Domains (Separated by Commas) | Yes         | Analyzer depends on this as a starting point for its process.                                                                            |
+|callback_url | Valid URL                           | Yes         | A webhook to be called back once the results are ready via a POST request.                                                               |
+|keywords     | Array of Strings                    | No          |                                                                                                                                          |
+|phrases      | Array of Strings                    | No          |                                                                                                                                          |
+|owned_domains| Valid Domains (Separated by Commas) | No          | Owned_domains will eliminate the risk from these domains and it'll have a direct impact on the results’ total score and returned values. |
+|customer     | String Identifier                   | Yes         | Any string. It will be used as an identifier for the customer.                                                                           |
+|dryrun       | Boolean                             | No          | Generate random testing results, false by default.                                                                                       |
 
 **Example of Valid Domains Separated by Commas for Request Body**
 
 www.domainskate.com, www.domainskate.nyc, www.domainskate.us
+
+**Example of a Valid URL for callback_url**
+
+https://www.domainskate.com/
 
 **Example request**
 

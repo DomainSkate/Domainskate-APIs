@@ -247,13 +247,14 @@ curl -X GET \
 }
 ```
 
-## Update Owned Domains API
+## Update Owned/Ignored Domains API
+*owned and ignored domains have the same effect*
 
 **PUT** `/update-owned-domains/<uuid>/`
 
-|parameter | Type             |Is required| description                                                                                                                    |
-|----------|------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------|
-|owned_domains| Array of Strings |No         | owned_domains will eliminate the risk from these domains and it'll have a direct impact on the brand's total score and results |
+|parameter | Type             |Is required| description                                                                                                                            |
+|----------|------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------|
+|owned_domains| Array of Strings |No         | owned/ignored domains will eliminate the risk from these domains and it'll have a direct impact on the brand's total score and results |
 
 **Example request**
 
